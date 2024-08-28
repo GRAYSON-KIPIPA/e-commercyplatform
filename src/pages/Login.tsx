@@ -2,10 +2,11 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
+import TrendingFlatOutlinedIcon from "@mui/icons-material/TrendingFlatOutlined";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 const Login = () => {
   return (
-    <div className="grid h-48 place-items-center border-1 mt-36">
+    <div className=" border-1 mt-36">
       <Box
         sx={{ width: 500 }}
         className="flex justify-center  grid grid-rows gap-4"
@@ -44,7 +45,7 @@ const Login = () => {
         </div>
         <Button className="w-96" variant="contained">
           Login
-          <ArrowRightAltIcon />
+          <TrendingFlatOutlinedIcon />
         </Button>
       </Box>
     </div>

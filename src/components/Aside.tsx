@@ -12,117 +12,116 @@ import ListItemText from "@mui/material/ListItemText";
 import SpaceDashboardTwoToneIcon from "@mui/icons-material/SpaceDashboardTwoTone";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { Button, TextField } from "@mui/material";
+import { Avatar, Button, IconButton, TextField } from "@mui/material";
 import Accordion, { AccordionSlots } from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Fade from "@mui/material/Fade";
-
-const drawerWidth = 260;
+import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from "@mui/material/InputAdornment";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import Stack from "@mui/material/Stack";
 
 function Aside() {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpansion = () => {
-    setExpanded((prevExpanded) => !prevExpanded);
-  };
   return (
-    <div className="bg-pink-400">
-      <Box sx={{ display: "flex" }}>
-        <Drawer
-          PaperProps={{ sx: { bgcolor: "white", color: "grey.700" } }}
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-              width: drawerWidth,
-              boxSizing: "border-box",
-            },
+    <Stack>
+      <Drawer
+        className=""
+        PaperProps={{
+          sx: { bgcolor: "black", color: "grey" },
+        }}
+        variant="permanent"
+      >
+        <img src="./src/assets/ShopKonekt.png" width={200} className="ml-6" />
+        <TextField
+          size="small"
+          className="bg-slate-400 w-5/6 rounded-xl ml-1"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon className="text-slate-500" />
+              </InputAdornment>
+            ),
           }}
-          variant="permanent"
-          anchor="left"
-        >
-          {/* <Toolbar /> */}
-          <img src="./src/assets/ShopKonekt.png" width={250} />
-          <TextField size="small" className="mt-2 m-2 rounded-lg" />
-          <Typography className="ml-9 mt-3 font-light ">MENU</Typography>
-          <ListItem className="">
-            <ListItemButton>
-              <ListItemIcon>
-                <div className="flex flex-row">
-                  <SpaceDashboardTwoToneIcon />
-                  <Accordion
-                    expanded={expanded}
-                    onChange={handleExpansion}
-                    slots={{ transition: Fade as AccordionSlots["transition"] }}
-                    //   slotProps={{ transition: { timeout: 400 } }}
-                    sx={{
-                      backgroundColor: "",
-                      "& .MuiAccordion-region": {
-                        height: expanded ? "auto" : 0,
-                      },
-                      "& .MuiAccordionDetails-root": {
-                        display: expanded ? "block" : "none",
-                      },
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      id="panel1-header"
-                    >
-                      <ListItemText>Overview</ListItemText>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-                        <ListItemButton>
-                          <ListItemIcon>
-                            <ShoppingBagOutlinedIcon />
-                          </ListItemIcon>
-                          <ListItemText>Products</ListItemText>
-                        </ListItemButton>
-                      </ListItem>
-                      <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-                        <ListItemButton>
-                          <ListItemIcon>
-                            <ShoppingBagOutlinedIcon />
-                          </ListItemIcon>
-                          <ListItemText>Products</ListItemText>
-                        </ListItemButton>
-                      </ListItem>
-                    </AccordionDetails>
-                  </Accordion>
-                </div>
-              </ListItemIcon>
-            </ListItemButton>
-          </ListItem>
-          <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-            <ListItemButton>
-              <ListItemIcon>
-                <ShoppingBagOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText>Products</ListItemText>
-            </ListItemButton>
-          </ListItem>
-          <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-            <ListItemButton>
-              <ListItemIcon>
-                <GroupOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText>Customers</ListItemText>
-            </ListItemButton>
-          </ListItem>
-          <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-            <ListItemButton>
-              <ListItemIcon>
-                <GroupOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText>Sellers</ListItemText>
-            </ListItemButton>
-          </ListItem>
-        </Drawer>
-      </Box>
-    </div>
+        />
+        <Typography className="ml-9 mt-3 font-light ">MENU</Typography>
+        {/* Accordion */}
+        <ListItem>
+          <Accordion className="w-68 bg-black text-stone-500 mb-0 ">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              <SpaceDashboardTwoToneIcon className=" text-sm mt-2" />
+              <ListItemText className="ml-2 ">Overview</ListItemText>
+            </AccordionSummary>
+            <AccordionDetails className="">
+              <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
+                <ListItemButton>
+                  <ShoppingBagOutlinedIcon
+                    className="text-sm"
+                    style={{ color: "grey" }}
+                  />
+                  <ListItemText className="ml-1">Products</ListItemText>
+                </ListItemButton>
+              </ListItem>
+              <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
+                <ShoppingBagOutlinedIcon
+                  className="text-sm"
+                  style={{ color: "grey" }}
+                />
+                <ListItemText className=" text-xs ml-1">
+                  Conversion & Retention
+                </ListItemText>
+              </ListItem>
+            </AccordionDetails>
+          </Accordion>
+        </ListItem>
+        <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
+          <ListItemButton>
+            <ShoppingBagOutlinedIcon
+              className="text-sm"
+              style={{ color: "grey" }}
+            />
+            <ListItemText className="ml-2">Products</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
+          <ListItemButton>
+            <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
+            <ListItemText className="ml-2">Customers</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <ListItem className=" hover:bg-blue-900 hover:rounded-full hover:text-white">
+          <ListItemButton>
+            <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
+            <ListItemText className="text-xl ml-2">Sellers</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <div className="mt-24 text-xs text-grey">
+          <Typography className="text-xs ml-5">PROFILE</Typography>
+          <div className="py-4  px-4 max-w-sm mx-auto bg-black rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-start sm:space-y-0 sm:space-x-6 group ">
+            <Avatar
+              className="block mx-auto h-9 rounded-full sm:mx-0 bg-black text-black text-center bg-white"
+              src=""
+            />
+            <div className="text-center space-y-2 sm:text-left">
+              <div className="space-y-0.5">
+                <p className="text-lg text-white font-semibold">
+                  Erin Lindford
+                </p>
+                <p className="text-slate-500 font-medium">Product Engineer</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 text-center text-gray mb-4">
+            <LogoutOutlinedIcon />
+            Logout
+          </div>
+        </div>
+      </Drawer>
+    </Stack>
   );
 }
 export default Aside;
