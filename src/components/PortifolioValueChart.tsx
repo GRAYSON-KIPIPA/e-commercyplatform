@@ -11,7 +11,7 @@ const chartSetting = {
     },
   ],
   width: 600,
-  height: 200,
+  height: 170,
   sx: {
     [`.${axisClasses.left} .${axisClasses.label}`]: {
       transform: "translate(-20px, 0)",
@@ -26,7 +26,7 @@ export default function PortifolioValueChart() {
     <div className="">
       <div className=" flex">
         <Box sx={{ backgroundColor: "black", width: 7, height: 15 }}></Box>
-        <span className="ml-5 font-bold">Most Sold Items</span>
+        <span className="ml-5 font-bold">Portifolio Value</span>
       </div>
       <div className="border">
         <div className="font-bold text-lg flex">

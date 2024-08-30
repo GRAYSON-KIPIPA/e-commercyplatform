@@ -11,39 +11,59 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import SelectTransaction from "./SelectTransaction";
 import LastMonthTransaction from "./LastMonthTransaction";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 
 function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
+  date: string,
+  id: number,
+  value: string,
+  status: string,
+  description: string
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { date, id, value, status, description };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
+  createData(
+    "Frozen yoghurt",
+    159,
+    "Tsh 120,000",
+    "available",
+    "Some short description"
+  ),
+  createData(
+    "Ice cream sandwich",
+    237,
+    "Tsh 120,000",
+    "available",
+    "Some short description"
+  ),
+  createData(
+    "Eclair",
+    262,
+    "Tsh 120,000",
+    "available",
+    "Some short description"
+  ),
 ];
 
 const TransactionForm = () => {
   return (
-    <div className="mt-5">
+    <div className="mt-2">
       <div className=" flex">
         <div>
           <Box sx={{ backgroundColor: "black", width: 7, height: 15 }}></Box>
         </div>
         <div>
-          <span className="ml-5 font-bold">Most Sold Items</span>
+          <span className="ml-5 font-bold">Transactions</span>
         </div>
       </div>
       <div className="border">
         <div className="flex flex-row">
           <TextField
+            sx={{ width: 590 }}
             size="small"
-            className="w-2/5 m-2 rounded-full"
+            className=" m-2 rounded-full"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="end">
@@ -60,36 +80,48 @@ const TransactionForm = () => {
           <Table sx={{ minWidth: 650, width: 1010 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>
-                  <strong>Date</strong>
+                <TableCell className="font-bold">Date</TableCell>
+                <TableCell className="font-bold" align="left">
+                  ID
                 </TableCell>
-                <TableCell align="right">
-                  <strong>ID</strong>
+                <TableCell className="font-bold" align="left">
+                  Value
                 </TableCell>
-                <TableCell align="right">
-                  <strong>Value</strong>
+                <TableCell className="font-bold" align="left">
+                  Status
                 </TableCell>
-                <TableCell align="right">
-                  <strong>Status</strong>
-                </TableCell>
-                <TableCell align="right">
-                  <strong>Sescription</strong>
+                <TableCell className="font-bold" align="left">
+                  Description
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow
-                  key={row.name}
+                  className="hover:bg-gray-100"
+                  key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.date}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="left">{row.id}</TableCell>
+                  <TableCell align="left">
+                    <ArrowCircleUpIcon
+                      className="text-md"
+                      style={{ color: "#d32f2f" }}
+                    />
+                    {row.value}
+                  </TableCell>
+                  <TableCell
+                    align="left"
+                    className="hover:bg-black hover:text-white hover:rounded-full"
+                  >
+                    {row.status}
+                  </TableCell>
+                  <TableCell className="font-bold" align="left">
+                    {row.description}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

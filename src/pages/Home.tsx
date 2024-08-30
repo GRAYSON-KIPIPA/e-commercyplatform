@@ -9,19 +9,15 @@ import TransactionForm from "../components/TransactionForm";
 const Home = () => {
   return (
     <div className="flex">
-      <div className="w-1/5 ">
-        <Aside />
-      </div>
-
-      <div className="flex w-4/5 grow m-8 flex-wrap">
-        <h1 className="font-bold text-md mb-4">Transaction overview</h1>
+      <div className="flex ml-10 flex-wrap ">
+        <h1 className="font-bold text-xl mb-4">Transaction overview</h1>
 
         <div className="flex">
           <SalesPieChart />
           <RevenueChart />
           <InEscrowChart />
         </div>
-        <div className="flex mt-10">
+        <div className="flex mt-6">
           <PortifolioValueChart />
           <SolidItemsChart />
         </div>

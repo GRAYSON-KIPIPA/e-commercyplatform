@@ -1,19 +1,13 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import SpaceDashboardTwoToneIcon from "@mui/icons-material/SpaceDashboardTwoTone";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { Avatar, Button, IconButton, TextField } from "@mui/material";
-import Accordion, { AccordionSlots } from "@mui/material/Accordion";
+import { Avatar, TextField } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -21,6 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import Stack from "@mui/material/Stack";
+import { Link } from "react-router-dom";
 
 function Aside() {
   return (
@@ -58,28 +53,30 @@ function Aside() {
             </AccordionSummary>
             <AccordionDetails className="">
               <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-                <ListItemButton>
+                <ListItemButton component={Link} to="/home">
                   <ShoppingBagOutlinedIcon
                     className="text-sm"
                     style={{ color: "grey" }}
                   />
-                  <ListItemText className="ml-1">Products</ListItemText>
+                  <ListItemText className="ml-1">Transactions</ListItemText>
                 </ListItemButton>
               </ListItem>
               <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-                <ShoppingBagOutlinedIcon
-                  className="text-sm"
-                  style={{ color: "grey" }}
-                />
-                <ListItemText className=" text-xs ml-1">
-                  Conversion & Retention
-                </ListItemText>
+                <ListItemButton component={Link} to="/conversion">
+                  <ShoppingBagOutlinedIcon
+                    className="text-sm"
+                    style={{ color: "grey" }}
+                  />
+                  <ListItemText className=" text-xs ml-1">
+                    Conversion & Retention
+                  </ListItemText>
+                </ListItemButton>
               </ListItem>
             </AccordionDetails>
           </Accordion>
         </ListItem>
         <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-          <ListItemButton>
+          <ListItemButton component={Link} to="/products">
             <ShoppingBagOutlinedIcon
               className="text-sm"
               style={{ color: "grey" }}
@@ -88,17 +85,19 @@ function Aside() {
           </ListItemButton>
         </ListItem>
         <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-          <ListItemButton>
+          <ListItemButton component={Link} to="/conversion">
             <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
             <ListItemText className="ml-2">Customers</ListItemText>
           </ListItemButton>
         </ListItem>
+
         <ListItem className=" hover:bg-blue-900 hover:rounded-full hover:text-white">
           <ListItemButton>
             <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
             <ListItemText className="text-xl ml-2">Sellers</ListItemText>
           </ListItemButton>
         </ListItem>
+
         <div className="mt-24 text-xs text-grey">
           <Typography className="text-xs ml-5">PROFILE</Typography>
           <div className="py-4  px-4 max-w-sm mx-auto bg-black rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-start sm:space-y-0 sm:space-x-6 group ">
