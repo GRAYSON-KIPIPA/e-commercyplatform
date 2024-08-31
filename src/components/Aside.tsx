@@ -85,14 +85,14 @@ function Aside() {
           </ListItemButton>
         </ListItem>
         <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-          <ListItemButton component={Link} to="/conversion">
+          <ListItemButton component={Link} to="/customers">
             <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
             <ListItemText className="ml-2">Customers</ListItemText>
           </ListItemButton>
         </ListItem>
 
         <ListItem className=" hover:bg-blue-900 hover:rounded-full hover:text-white">
-          <ListItemButton>
+          <ListItemButton component={Link} to="/sellers">
             <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
             <ListItemText className="text-xl ml-2">Sellers</ListItemText>
           </ListItemButton>

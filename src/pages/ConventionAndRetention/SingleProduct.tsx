@@ -8,7 +8,7 @@ const SingleProduct = () => {
     <div>
       <div className="flex">
         <IconButton
-          className="flex bg-slate-200 ml-6"
+          className="flex bg-slate-200 ml-6 rounded-lg m-1"
           onClick={() => navigate("/products")}
         >
           <ChevronLeftOutlinedIcon />
