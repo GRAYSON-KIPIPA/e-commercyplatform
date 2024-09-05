@@ -1,12 +1,14 @@
 import CustomerTabs from "../components/CustomerTabs/CustomerTabs";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SellerTabs from "../components/SellerTabs/SellerTabs";
-
+import { sellerStore } from "../store/sellerStore";
 const SingleSeller = () => {
   const navigate = useNavigate();
 
+  const { id } = useParams();
+  const ID = Number(id);
   return (
     <div className="col ml-8">
       <div className="flex flex-row mt-2">
@@ -20,13 +22,24 @@ const SingleSeller = () => {
       </div>
       <div className="flex mt-6 row">
         <div className="flex w-1/2 place-content-end">
-          <div className="border flex flex-col h-50 w-60 flex items-center   ">
-            <img src="person5.jpg" className="h-20 w-20 rounded-full mt-7" />
-            <div className="font-bold text-sm">Samia jamal</div>
-            <div className="text-xs text-slate-500">
-              Product manager at tech_core
-            </div>
-          </div>
+          {sellerStore.map((seller) =>
+            seller.id === ID ? (
+              <div>
+                <div className="border flex flex-col h-50 w-60 flex items-center   ">
+                  <img
+                    src={seller.image}
+                    className="h-20 w-20 rounded-full mt-7"
+                  />
+                  <div className="font-bold text-sm">{seller.name}</div>
+                  <div className="text-xs text-slate-500">
+                    Product manager at tech_core
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )
+          )}
         </div>
         <div className="w-1/2 ml-10">
           <div className="text-sm font-bold m-">Contact Information</div>

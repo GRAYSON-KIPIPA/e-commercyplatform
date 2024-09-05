@@ -6,7 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import SpaceDashboardTwoToneIcon from "@mui/icons-material/SpaceDashboardTwoTone";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { Avatar, TextField } from "@mui/material";
+import { Avatar, IconButton, TextField } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -23,14 +23,19 @@ function Aside() {
       <Drawer
         className=""
         PaperProps={{
-          sx: { bgcolor: "black", color: "grey" },
+          sx: {
+            bgcolor: "black",
+            color: "grey",
+          },
         }}
         variant="permanent"
       >
-        <img src="./src/assets/ShopKonekt.png" width={200} className="ml-6" />
+        <div className="p-4 flex justify-start">
+          <img src="./src/assets/ShopKonekt.png" width={200} className="" />
+        </div>
         <TextField
           size="small"
-          className="bg-slate-400 w-5/6 rounded-xl ml-1"
+          className="bg-gray-600 w-5/6  rounded-xl "
           InputProps={{
             startAdornment: (
               <InputAdornment position="end">
@@ -39,84 +44,101 @@ function Aside() {
             ),
           }}
         />
-        <Typography className="ml-9 mt-3 font-light ">MENU</Typography>
+        <Typography className="ml-3 mt-3 font-light ">MENU</Typography>
         {/* Accordion */}
-        <ListItem>
-          <Accordion className="w-68 bg-black text-stone-500 mb-0 ">
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
+        <Accordion disableGutters className="bg-black text-stone-500 ">
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon className="text-slate-500 " />}
+            // aria-controls="panel1-content"
+            // id="panel1-header"
+          >
+            <SpaceDashboardTwoToneIcon className="mt-2 text-sm" />
+            <ListItemText className="ml-2 ">Overview</ListItemText>
+          </AccordionSummary>
+          <AccordionDetails className="">
+            <ListItemButton
+              className="hover:bg-blue-900 hover:rounded-full hover:text-white"
+              component={Link}
+              to="/home"
+              style={{ maxHeight: "40px" }}
             >
-              <SpaceDashboardTwoToneIcon className=" text-sm mt-2" />
-              <ListItemText className="ml-2 ">Overview</ListItemText>
-            </AccordionSummary>
-            <AccordionDetails className="">
-              <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-                <ListItemButton component={Link} to="/home">
-                  <ShoppingBagOutlinedIcon
-                    className="text-sm"
-                    style={{ color: "grey" }}
-                  />
-                  <ListItemText className="ml-1">Transactions</ListItemText>
-                </ListItemButton>
-              </ListItem>
-              <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-                <ListItemButton component={Link} to="/conversion">
-                  <ShoppingBagOutlinedIcon
-                    className="text-sm"
-                    style={{ color: "grey" }}
-                  />
-                  <ListItemText className=" text-xs ml-1">
-                    Conversion & Retention
-                  </ListItemText>
-                </ListItemButton>
-              </ListItem>
-            </AccordionDetails>
-          </Accordion>
-        </ListItem>
-        <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-          <ListItemButton component={Link} to="/products">
-            <ShoppingBagOutlinedIcon
-              className="text-sm"
-              style={{ color: "grey" }}
-            />
-            <ListItemText className="ml-2">Products</ListItemText>
-          </ListItemButton>
-        </ListItem>
-        <ListItem className="hover:bg-blue-900 hover:rounded-full hover:text-white">
-          <ListItemButton component={Link} to="/customers">
-            <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
-            <ListItemText className="ml-2">Customers</ListItemText>
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem className=" hover:bg-blue-900 hover:rounded-full hover:text-white">
-          <ListItemButton component={Link} to="/sellers">
-            <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
-            <ListItemText className="text-xl ml-2">Sellers</ListItemText>
-          </ListItemButton>
-        </ListItem>
-
-        <div className="mt-24 text-xs text-grey">
+              <ShoppingBagOutlinedIcon
+                className="text-sm"
+                style={{ color: "grey" }}
+              />
+              <ListItemText className="ml-1">Transactions</ListItemText>
+            </ListItemButton>
+            <ListItemButton
+              className="hover:bg-blue-900 hover:rounded-full hover:text-white"
+              component={Link}
+              to="/conversion"
+              style={{ maxHeight: "40px" }}
+            >
+              <ShoppingBagOutlinedIcon
+                className="text-sm"
+                style={{ color: "grey" }}
+              />
+              <ListItemText className=" text-xs ml-1">
+                Conversion & Retention
+              </ListItemText>
+            </ListItemButton>
+          </AccordionDetails>
+        </Accordion>
+        <ListItemButton
+          className="hover:bg-blue-900 hover:rounded-full hover:text-white"
+          component={Link}
+          to="/products"
+          style={{ maxHeight: "40px" }}
+        >
+          <ShoppingBagOutlinedIcon
+            className="text-sm"
+            style={{ color: "grey" }}
+          />
+          <ListItemText className="ml-2">Products</ListItemText>
+        </ListItemButton>
+        <ListItemButton
+          className="hover:bg-blue-900 hover:rounded-full hover:text-white"
+          component={Link}
+          to="/customers"
+          style={{ maxHeight: "40px" }}
+        >
+          <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
+          <ListItemText className="ml-2">Customers</ListItemText>
+        </ListItemButton>
+        <ListItemButton
+          className=" hover:bg-blue-900 hover:rounded-full hover:text-white"
+          component={Link}
+          to="/sellers"
+          style={{ maxHeight: "40px" }}
+        >
+          <GroupOutlinedIcon className="text-sm" style={{ color: "grey" }} />
+          <ListItemText className="text-3xl ml-2">Sellers</ListItemText>
+        </ListItemButton>
+        <div className="mt-24 text-xs text-grey fixed bottom-0">
           <Typography className="text-xs ml-5">PROFILE</Typography>
           <div className="py-4  px-4 max-w-sm mx-auto bg-black rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-start sm:space-y-0 sm:space-x-6 group ">
             <Avatar
               className="block mx-auto h-9 rounded-full sm:mx-0 bg-black text-black text-center bg-white"
-              src=""
+              src="person5.jpg "
             />
             <div className="text-center space-y-2 sm:text-left">
               <div className="space-y-0.5">
                 <p className="text-lg text-white font-semibold">
                   Erin Lindford
                 </p>
-                <p className="text-slate-500 font-medium">Product Engineer</p>
+                <p className="text-slate-500 font-small">Product Engineer</p>
               </div>
             </div>
           </div>
-          <div className="mt-4 text-center text-gray mb-4">
-            <LogoutOutlinedIcon />
-            Logout
+          <div className="flex justify-center">
+            <IconButton
+              component={Link}
+              to="/login"
+              className="mt-2 flex content-center text-center text-gray-500 mb-4"
+            >
+              <LogoutOutlinedIcon className="text-sm" />
+              <div className="text-sm">Logout</div>
+            </IconButton>
           </div>
         </div>
       </Drawer>

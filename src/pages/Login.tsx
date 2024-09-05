@@ -3,8 +3,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import TrendingFlatOutlinedIcon from "@mui/icons-material/TrendingFlatOutlined";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
   return (
     <div className=" border-1 mt-36">
       <Box
@@ -43,7 +45,11 @@ const Login = () => {
             className="w-96 rounded-full"
           />
         </div>
-        <Button className="w-96" variant="contained">
+        <Button
+          className="w-96"
+          variant="contained"
+          onClick={() => navigate("/home")}
+        >
           Login
           <TrendingFlatOutlinedIcon />
         </Button>

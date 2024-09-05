@@ -20,8 +20,8 @@ const SingleCustomer = () => {
       <div className="flex mt-6 row">
         <div className="flex w-1/2 place-content-end">
           <div className="border flex flex-col h-50 w-60 flex items-center   ">
-            <img src="person5.jpg" className="h-20 w-20 rounded-full mt-7" />
-            <div className="font-bold text-sm">Samia jamal</div>
+            <img src="person3.jpg" className="h-20 w-20 rounded-full mt-7" />
+            <div className="font-bold text-sm">Kipipa Keneth</div>
             <div className="text-xs text-slate-500">
               Product manager at tech_core
             </div>
@@ -31,7 +31,7 @@ const SingleCustomer = () => {
           <div className="text-sm font-bold m-">Contact Information</div>
           <div className="m-1">
             <div className="text-slate-400">Email Address</div>
-            <div className="font-bold">Samiajamal@gmail.com</div>
+            <div className="font-bold">Kipipa@gmail.com</div>
           </div>
           <div className="m-1">
             <div className="text-slate-400">Phone Number</div>

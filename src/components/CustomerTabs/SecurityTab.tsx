@@ -10,7 +10,7 @@ const SecurityTab = () => {
           <div className="text-sm font-bold ">Delete Customer</div>
           <div className="flex flex-row">
             <div className="text-xs w-4/5">
-              You are about to delete ‘Amir Kingstone’. Note that this action is
+              You are about to delete ‘Kipipa Keneth’. Note that this action is
               not reversible
             </div>
             <div className="flex content-end w-2/5">
