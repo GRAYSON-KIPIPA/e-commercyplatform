@@ -1,10 +1,21 @@
 import CustomerTabs from "../components/CustomerTabs/CustomerTabs";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useCustomerStore } from "../store/customerStore";
+import CustomerService from "../services/customer";
+import { useEffect } from "react";
 
 const SingleCustomer = () => {
+  const { customers, setCustomer } = useCustomerStore();
+  const customerService = CustomerService();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const ID = Number(id);
+
+  useEffect(() => {
+    setCustomer(customerService.getCustomerList());
+  }, []);
 
   return (
     <div className="col ml-8">
@@ -20,11 +31,24 @@ const SingleCustomer = () => {
       <div className="flex mt-6 row">
         <div className="flex w-1/2 place-content-end">
           <div className="border flex flex-col h-50 w-60 flex items-center   ">
-            <img src="person3.jpg" className="h-20 w-20 rounded-full mt-7" />
-            <div className="font-bold text-sm">Kipipa Keneth</div>
-            <div className="text-xs text-slate-500">
-              Product manager at tech_core
-            </div>
+            {customers.map((customer) =>
+              customer.id === ID ? (
+                <div className="flex flex-row">
+                  <div className="flex flex-wrap ">
+                    <img
+                      src={customer.image}
+                      className="h-20 w-20 rounded-full mt-7"
+                    />
+                    <div className="font-bold text-sm">{customer.name}</div>
+                    <div className="text-xs text-slate-500">
+                      Product manager at tech_core
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )
+            )}
           </div>
         </div>
         <div className="w-1/2 ml-10">

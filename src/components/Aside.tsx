@@ -1,6 +1,5 @@
 import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import SpaceDashboardTwoToneIcon from "@mui/icons-material/SpaceDashboardTwoTone";
@@ -49,8 +48,6 @@ function Aside() {
         <Accordion disableGutters className="bg-black text-stone-500 ">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon className="text-slate-500 " />}
-            // aria-controls="panel1-content"
-            // id="panel1-header"
           >
             <SpaceDashboardTwoToneIcon className="mt-2 text-sm" />
             <ListItemText className="ml-2 ">Overview</ListItemText>

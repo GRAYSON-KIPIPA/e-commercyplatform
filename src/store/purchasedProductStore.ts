@@ -1,6 +1,6 @@
 import { PurchasedProductI } from "../modals/PurchasedProduct";
-
-export const PurchasedProductStore: PurchasedProductI[] = [
+import { create } from "zustand";
+const PurchasedProductStore: PurchasedProductI[] = [
   {
     image: "/public/phone.png",
     name: "MP3 Music Player",
@@ -23,3 +23,11 @@ export const PurchasedProductStore: PurchasedProductI[] = [
     price: "TZS 1,000,000",
   },
 ];
+
+interface PurchasedProduct {
+  purchasedProducts: PurchasedProductI[];
+}
+
+export const usePurchasedProductStore = create<PurchasedProduct>(() => ({
+  purchasedProducts: PurchasedProductStore,
+}));

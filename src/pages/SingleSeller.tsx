@@ -1,14 +1,23 @@
-import CustomerTabs from "../components/CustomerTabs/CustomerTabs";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import { useNavigate, useParams } from "react-router-dom";
 import SellerTabs from "../components/SellerTabs/SellerTabs";
-import { sellerStore } from "../store/sellerStore";
+import { useEffect, useState } from "react";
+import { useSellerStore } from "../store/sellerStore";
+import SellerService from "../services/seller";
+
 const SingleSeller = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
   const ID = Number(id);
+
+  const sellerService = SellerService();
+  const { sellers, setSeller } = useSellerStore();
+
+  useEffect(() => {
+    setSeller(sellerService.getSellers());
+  }, []);
   return (
     <div className="col ml-8">
       <div className="flex flex-row mt-2">
@@ -22,7 +31,7 @@ const SingleSeller = () => {
       </div>
       <div className="flex mt-6 row">
         <div className="flex w-1/2 place-content-end">
-          {sellerStore.map((seller) =>
+          {sellers.map((seller) =>
             seller.id === ID ? (
               <div>
                 <div className="border flex flex-col h-50 w-60 flex items-center   ">

@@ -1,11 +1,8 @@
-import Aside from "../components/Aside";
 import PortifolioValueChart from "../components/PortifolioValueChart";
-import SolidItemsChart from "../components/SoldItemsChart";
 import SalesPieChart from "../components/SalesPieChart";
 import RevenueChart from "../components/RevenueChart";
 import InEscrowChart from "../components/InEscrowChart";
 import TransactionForm from "../components/TransactionForm";
-import SoldItems from "../components/SoldItemsChart";
 import DemographicSegmentation from "../components/DemographicSegmentation";
 import { Box } from "@mui/material";
 
@@ -60,7 +57,6 @@ const Home = () => {
               />
             </div>
           </div>
-          {/* <SolidItemsChart /> */}
         </div>
 
         <div className="flex">

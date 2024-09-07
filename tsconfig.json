@@ -6,7 +6,8 @@
   ],
    "compilerOptions": {
    "paths": {
-     "@mui/material": ["./node_modules/@mui/joy"]
+     "@mui/material": ["./node_modules/@mui/joy"],
+     "react": [ "./node_modules/@types/react" ]
    }
    }
 }

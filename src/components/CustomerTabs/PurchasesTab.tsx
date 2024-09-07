@@ -1,5 +1,6 @@
 import { Rating } from "@mui/material";
 import React from "react";
+import { usePurchasedProductStore } from "../../store/purchasedProductStore";
 
 const products = [
   {
@@ -25,13 +26,14 @@ const products = [
   },
 ];
 const PurchasesTab = () => {
+  const { purchasedProducts } = usePurchasedProductStore();
   return (
     <div className=" ">
       <div className="flex">
-        {products.map((product) => (
+        {purchasedProducts.map((product) => (
           <div className="border flex flex-col mr-3 h-52 w-64 p-3">
             <div className="flex justify-center">
-              <img src={product.product} className="h-28 w-24 rounded " />
+              <img src={product.image} className="h-28 w-24 rounded " />
             </div>
             <div className="font-bold text-sm">{product.name}</div>
             <div className="text-xs text-slate-500">{product.details}</div>

@@ -1,10 +1,8 @@
-import * as React from "react";
 import Login from "./pages/Login";
-import Aside from "./components/Aside";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ConversionAndRetention from "./pages/ConventionAndRetention/CoventionAndRetention";
-import Products from "./pages/ConventionAndRetention/Products";
+import Products from "./pages/Products";
 import Customers from "./pages/Customers";
 import Sellers from "./pages/Sellers";
 import SingleCustomer from "./pages/SingleCustomer";
@@ -26,7 +24,7 @@ function App() {
                 <Route path="/products/:id" element={<SingleProduct />} />
                 <Route path="/sellers/:id" element={<SingleSeller />} />
                 <Route path="/customers" element={<Customers />} />
-                <Route path="/singlecustomer" element={<SingleCustomer />} />
+                <Route path="/customers/:id" element={<SingleCustomer />} />
                 <Route path="/sellers" element={<Sellers />} />
 
                 <Route
