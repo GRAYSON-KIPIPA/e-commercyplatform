@@ -1,4 +1,4 @@
-import { Pagination, Typography } from "@mui/material";
+import { CircularProgress, Pagination, Typography } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
@@ -10,6 +10,7 @@ import ProductService from "../services/product";
 import { paginate, paginateProduct } from "../components/pagination";
 
 const Products = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const productService = ProductService();
   const navigate = useNavigate();
   const { products, setProducts } = useProductStore();
@@ -19,10 +20,21 @@ const Products = () => {
   }
   const [value, setValue] = React.useState<number | null>(2);
 
+  console.log(products);
   useEffect(() => {
-    setProducts(productService.getProductList());
+    setIsLoading(true);
+    function fetchProducts() {
+      setProducts(productService.getProductList());
+    }
+    const timer = setTimeout(() => {
+      fetchProducts();
+      setIsLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
   }, []);
 
+  console.log(products);
   //PAGINATION CODES
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -46,48 +58,57 @@ const Products = () => {
         }}
         label="Search for products"
       />
-      <div></div>
-      <div className="flex flex-row flex-wrap w-[100%]">
-        {currentProducts &&
-          currentProducts.map((product) => (
-            <div
-              onClick={() => handleClickProduct(product.id)}
-              className="border m-2 p-4 basis-1/5"
-            >
-              <img
-                src={product.image}
-                width={100}
-                height={20}
-                onClick={() => handleClickProduct(product.id)}
-              />
-              <Typography className="font-bold text-sm mt-1">
-                {product.name}
-              </Typography>
-              <Typography className="text-xs text-slate-400">
-                {product.info}
-              </Typography>
-              <Rating
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-              />
+      <div>
+        {isLoading ? (
+          <div className="flex mt-48 place-content-center">
+            <CircularProgress />
+          </div>
+        ) : (
+          <>
+            <div className="flex flex-row flex-wrap w-[100%]">
+              {currentProducts &&
+                currentProducts.map((product) => (
+                  <div
+                    onClick={() => handleClickProduct(product.id)}
+                    className="border m-2 p-4 basis-1/5"
+                  >
+                    <img
+                      src={product.image}
+                      width={100}
+                      height={20}
+                      onClick={() => handleClickProduct(product.id)}
+                    />
+                    <Typography className="font-bold text-sm mt-1">
+                      {product.name}
+                    </Typography>
+                    <Typography className="text-xs text-slate-400">
+                      {product.info}
+                    </Typography>
+                    <Rating
+                      name="simple-controlled"
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                    />
+                  </div>
+                ))}
             </div>
-          ))}
+            {/* Step 5: Render the Material-UI Pagination component */}
+            {paginatedProducts.length > 1 && (
+              <div className="flex justify-center mb-4">
+                <Pagination
+                  // page={1}
+                  // count={99}
+                  count={paginatedProducts.length}
+                  page={currentPage}
+                  onChange={(_, newPage) => setCurrentPage(newPage)}
+                />
+              </div>
+            )}
+          </>
+        )}
       </div>
-      {/* Step 5: Render the Material-UI Pagination component */}
-      {paginatedProducts.length > 1 && (
-        <div className="flex justify-center mb-4">
-          <Pagination
-            // page={1}
-            // count={99}
-            count={paginatedProducts.length}
-            page={currentPage}
-            onChange={(_, newPage) => setCurrentPage(newPage)}
-          />
-        </div>
-      )}
     </div>
   );
 };

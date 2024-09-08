@@ -4,9 +4,11 @@ import ChevronLeftOutlinedIcon from "@mui/icons-material/ChevronLeftOutlined";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCustomerStore } from "../store/customerStore";
 import CustomerService from "../services/customer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 const SingleCustomer = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { customers, setCustomer } = useCustomerStore();
   const customerService = CustomerService();
   const navigate = useNavigate();
@@ -14,7 +16,17 @@ const SingleCustomer = () => {
   const ID = Number(id);
 
   useEffect(() => {
-    setCustomer(customerService.getCustomerList());
+    function fetchCustomers() {
+      setIsLoading(true);
+      setCustomer(customerService.getCustomerList());
+    }
+
+    const timer = setTimeout(() => {
+      fetchCustomers();
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -28,48 +40,58 @@ const SingleCustomer = () => {
         </IconButton>
         <div className="text-sm ml-2 mt-1">Back to Customers</div>
       </div>
-      <div className="flex mt-6 row">
-        <div className="flex w-1/2 place-content-end">
-          <div className="border flex flex-col h-50 w-60 flex items-center   ">
-            {customers.map((customer) =>
-              customer.id === ID ? (
-                <div className="flex flex-row">
-                  <div className="flex flex-wrap ">
-                    <img
-                      src={customer.image}
-                      className="h-20 w-20 rounded-full mt-7"
-                    />
-                    <div className="font-bold text-sm">{customer.name}</div>
-                    <div className="text-xs text-slate-500">
-                      Product manager at tech_core
+      {isLoading ? (
+        <div className="flex mt-48 place-content-center">
+          <CircularProgress />
+        </div>
+      ) : (
+        <>
+          <div className="flex mt-6 row">
+            <div className="flex w-1/2 place-content-end">
+              <div className="border flex flex-col h-50 w-60 flex items-center   ">
+                {customers.map((customer) =>
+                  customer.id === ID ? (
+                    <div className="flex flex-row">
+                      <div className="flex flex-wrap ">
+                        <img
+                          className="border flex flex-col h-50 w-60 flex items-center "
+                          src={customer.image}
+                        />
+                        <div className="font-bold text-sm">{customer.name}</div>
+                        <div className="text-xs text-slate-500">
+                          Product manager at tech_core
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    ""
+                  )
+                )}
+              </div>
+            </div>
+            <div className="w-1/2 ml-10">
+              <div className="text-sm font-bold m-">Contact Information</div>
+              <div className="m-1">
+                <div className="text-slate-400">Email Address</div>
+                <div className="font-bold">Kipipa@gmail.com</div>
+              </div>
+              <div className="m-1">
+                <div className="text-slate-400">Phone Number</div>
+                <div className="font-bold">+255 678 931 212</div>
+              </div>
+              <div className="m-1">
+                <div className="text-slate-400">Address</div>
+                <div className="font-bold">
+                  Tanzania, Dar es salaam, Makumbusho
                 </div>
-              ) : (
-                ""
-              )
-            )}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="w-1/2 ml-10">
-          <div className="text-sm font-bold m-">Contact Information</div>
-          <div className="m-1">
-            <div className="text-slate-400">Email Address</div>
-            <div className="font-bold">Kipipa@gmail.com</div>
+          <div className="row">
+            <CustomerTabs />
           </div>
-          <div className="m-1">
-            <div className="text-slate-400">Phone Number</div>
-            <div className="font-bold">+255 678 931 212</div>
-          </div>
-          <div className="m-1">
-            <div className="text-slate-400">Address</div>
-            <div className="font-bold">Tanzania, Dar es salaam, Makumbusho</div>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <CustomerTabs />
-      </div>
+        </>
+      )}
     </div>
   );
 };

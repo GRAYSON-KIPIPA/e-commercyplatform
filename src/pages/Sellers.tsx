@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { paginate } from "../components/pagination";
 import Pagination from "@mui/material/Pagination";
 const Sellers = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   function clickSingleSeller(id: number) {
     navigate(`/sellers/${id}`);
@@ -17,7 +18,17 @@ const Sellers = () => {
   const sellerService = SellerService();
 
   useEffect(() => {
-    setSeller(sellerService.getSellers());
+    setIsLoading(true);
+    function fetchSellers() {
+      setSeller(sellerService.getSellers());
+      setIsLoading(false);
+    }
+
+    const timer = setTimeout(() => {
+      fetchSellers();
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   //PAGINATION CODES
@@ -42,28 +53,39 @@ const Sellers = () => {
         }}
         label="Search for sellers"
       />
-      <div className="flex flex-row flex-wrap gap-4 m-1">
-        {currentSellers &&
-          currentSellers.map((seller) => (
-            <div className="border h-40 w-40 p-4 flex flex-col justify-center">
-              <a onClick={() => clickSingleSeller(seller.id)}>
-                <img src={seller.image} className="rounded-full h-20 w-20" />
-              </a>
-              <div className="font-bold">{seller.name}</div>
-              <div className="text-xs text-slate-400">{seller.email}</div>
+      {isLoading ? (
+        <div className="flex mt-48 place-content-center">
+          <CircularProgress />
+        </div>
+      ) : (
+        <div>
+          <div className="flex flex-row flex-wrap gap-4 m-1">
+            {currentSellers &&
+              currentSellers.map((seller) => (
+                <div className="border h-40 w-40 p-4 flex flex-col justify-center">
+                  <a onClick={() => clickSingleSeller(seller.id)}>
+                    <img
+                      src={seller.image}
+                      className="rounded-full h-20 w-20"
+                    />
+                  </a>
+                  <div className="font-bold">{seller.name}</div>
+                  <div className="text-xs text-slate-400">{seller.email}</div>
+                </div>
+              ))}
+          </div>
+          {/* Step 5: Render the Material-UI Pagination component */}
+          {paginatedSellers.length > 1 && (
+            <div className="flex justify-center mb-4">
+              <Pagination
+                // page={1}
+                // count={99}
+                count={paginatedSellers.length}
+                page={currentPage}
+                onChange={(_, newPage) => setCurrentPage(newPage)}
+              />
             </div>
-          ))}
-      </div>
-      {/* Step 5: Render the Material-UI Pagination component */}
-      {paginatedSellers.length > 1 && (
-        <div className="flex justify-center mb-4">
-          <Pagination
-            // page={1}
-            // count={99}
-            count={paginatedSellers.length}
-            page={currentPage}
-            onChange={(_, newPage) => setCurrentPage(newPage)}
-          />
+          )}
         </div>
       )}
     </div>

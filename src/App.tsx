@@ -6,7 +6,7 @@ import Products from "./pages/Products";
 import Customers from "./pages/Customers";
 import Sellers from "./pages/Sellers";
 import SingleCustomer from "./pages/SingleCustomer";
-import SingleProduct from "./pages/ConventionAndRetention/SingleProduct";
+import SingleProduct from "./pages/SingleProduct";
 import SingleSeller from "./pages/SingleSeller";
 import SidebarLayout from "./components/SidebarLayout";
 
