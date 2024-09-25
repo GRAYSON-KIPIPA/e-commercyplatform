@@ -20,7 +20,6 @@ const Products = () => {
   }
   const [value, setValue] = React.useState<number | null>(2);
 
-  console.log(products);
   useEffect(() => {
     setIsLoading(true);
     function fetchProducts() {
@@ -29,7 +28,7 @@ const Products = () => {
     const timer = setTimeout(() => {
       fetchProducts();
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

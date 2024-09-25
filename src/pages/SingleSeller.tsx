@@ -5,7 +5,7 @@ import SellerTabs from "../components/SellerTabs/SellerTabs";
 import { useEffect, useState } from "react";
 import { useSellerStore } from "../store/sellerStore";
 import SellerService from "../services/seller";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, LinearProgress } from "@mui/material";
 
 const SingleSeller = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,8 +43,8 @@ const SingleSeller = () => {
         <div className="text-sm ml-2 mt-1">Back to Sellers</div>
       </div>
       {isLoading ? (
-        <div className="flex mt-48 place-content-center">
-          <CircularProgress />
+        <div className="mt-4 place-content-center">
+          <LinearProgress />
         </div>
       ) : (
         <>

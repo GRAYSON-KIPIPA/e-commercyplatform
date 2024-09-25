@@ -26,7 +26,7 @@ const Sellers = () => {
 
     const timer = setTimeout(() => {
       fetchSellers();
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,7 +39,7 @@ const Sellers = () => {
   const currentSellers = paginatedSellers[currentPage - 1];
   return (
     <div className="ml-4">
-      <div className="font-bold m-2">Customers</div>
+      <div className="font-bold m-2">Sellers</div>
       <TextField
         sx={{ width: 1000 }}
         size="small"

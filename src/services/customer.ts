@@ -197,7 +197,7 @@ export default function CustomerService() {
         image: "/public/person3.jpg",
         name: "Kipipa Keneth",
         email: "kipipa@gmail.com",
-        id: 32,
+        id: 33,
       },
       {
         image: "/public/person4.jpg",

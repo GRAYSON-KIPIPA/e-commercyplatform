@@ -24,7 +24,7 @@ const SingleCustomer = () => {
     const timer = setTimeout(() => {
       fetchCustomers();
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -52,9 +52,9 @@ const SingleCustomer = () => {
                 {customers.map((customer) =>
                   customer.id === ID ? (
                     <div className="flex flex-row">
-                      <div className="flex flex-wrap ">
+                      <div className="border flex flex-col h-50 w-60 flex items-center">
                         <img
-                          className="border flex flex-col h-50 w-60 flex items-center "
+                          className="h-20 w-20 rounded-full mt-7"
                           src={customer.image}
                         />
                         <div className="font-bold text-sm">{customer.name}</div>
